@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Static Page</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github.min.css">
+</head>
+<body>
+<div id="markdown-output"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/lib/highlight.min.js"></script>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  fetch("input.md")
+    .then(response => response.text())
+    .then(data => {
+      const html = marked(data);
+      document.querySelector("#markdown-output").innerHTML = html;
+      document.querySelectorAll("pre code").forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    });
+});
+</script>
+</body>
+</html>
